@@ -28,7 +28,7 @@ namespace TEST02_WPFMVVM.viewmodel
 
         public CustomerViewModel()
             : this(new MocCustomersServices()) // gdy kożystamy z Moc używamy metod Moc
-           //: this(new DbCustomerService()) // gdy kożystamy z bazy danych kożystamy z metod klasy DbProductService
+          // : this(new DbCustomerService()) // gdy kożystamy z bazy danych kożystamy z metod klasy DbProductService
         {
            
         }
@@ -37,25 +37,71 @@ namespace TEST02_WPFMVVM.viewmodel
         private void Load()
         {
             Customers = new ObservableCollection<CustomerModel>(_CustomersService.Get());  //implementacja klasy informującej listę o konieczności zmiany
-            this.TextValue = "abc";
+           // Customers = new ObservableCollection<CustomerModel>();  //implementacja klasy informującej listę o konieczności zmiany
+                                                                                           //sdffsdfsdfsd
+            this.TextValueName = "abc";
             
         }
 
-        private string _TextValue;
+        private string _TextValueName;
 
-        public string TextValue
+        public string TextValueName
         {
             get
             {                
-                return _TextValue;
+                return _TextValueName;
             }
             set
             {
-                _TextValue = value;
+                _TextValueName = value;
                 OnPropertyChanged();
             }
         }
 
+        private string _TextValueAddress;
+
+        public string TextValueAddress
+        {
+            get
+            {
+                return _TextValueAddress;
+            }
+            set
+            {
+                _TextValueAddress = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _TextValueEmail;
+
+        public string TextValueEmail
+        {
+            get
+            {
+                return _TextValueEmail;
+            }
+            set
+            {
+                _TextValueEmail = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _TextValuePassword;
+
+        public string TextValuePassword
+        {
+            get
+            {
+                return _TextValuePassword;
+            }
+            set
+            {
+                _TextValuePassword = value;
+                OnPropertyChanged();
+            }
+        }
 
 
 
@@ -81,9 +127,9 @@ namespace TEST02_WPFMVVM.viewmodel
 
         private void AddCustomer()
         {
-            //this.TextValue = "zmiana";
-            //this.TextValue = this.SelectedCustomer.Name;
-            var customer = new CustomerModel(this.TextValue);
+            //this.TextValueName = "zmiana";
+            //this.TextValueName = this.SelectedCustomer.Name;
+            var customer = new CustomerModel(this.TextValueName, this.TextValueAddress, this.TextValueEmail, this.TextValuePassword);
             _CustomersService.Add(customer);
             this.Customers.Add(customer);           
         }
@@ -100,7 +146,7 @@ namespace TEST02_WPFMVVM.viewmodel
         private void UpdateCustomer()
         {
             
-            _CustomersService.Update(SelectedCustomer, TextValue);
+            _CustomersService.Update(SelectedCustomer, TextValueName, TextValueAddress, TextValueEmail, TextValuePassword);
           
             
         }
@@ -132,6 +178,20 @@ namespace TEST02_WPFMVVM.viewmodel
                 OnPropertyChanged();
             }
         }
+
+
+
+        //private ICollection<Customers> _Customers;
+
+        //public ICollection<Customers> Customers
+        //{
+        //    get { return _Customers; }
+        //    set
+        //    {
+        //        _Customers = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
 
 
@@ -236,7 +296,10 @@ namespace TEST02_WPFMVVM.viewmodel
 
         private void SelectRow()
         {
-            this.TextValue = SelectedCustomer.Name;
+            this.TextValueName = SelectedCustomer.Name;
+            this.TextValueAddress = SelectedCustomer.Address;
+            this.TextValueEmail = SelectedCustomer.Email;
+            this.TextValuePassword = SelectedCustomer.Password;
         }
 
 

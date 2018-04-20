@@ -16,9 +16,10 @@ namespace TEST02_WPFMVVM.services
         {
             customers = new List<CustomerModel>
             {
-                new CustomerModel {Id=1, Name = "Name01" },
-                new CustomerModel {Id=2, Name = "Name02" },
-                new CustomerModel {Id=3, Name = "Name03" },
+                new CustomerModel {Id=1, Name = "Name01", Address = "Adres01", Email = "mail@mail.pl", Password = "new password" },
+                new CustomerModel {Id=2, Name = "Name02", Address = "Adres02", Email = "mail2@mail.pl", Password = "new password 2" },
+                new CustomerModel {Id=3, Name = "Name03", Address = "Adres03", Email = "mail3@mail.pl", Password = "new password 3" },
+                new CustomerModel {Id=4, Name = "Name04", Address = "Adres04", Email = "mail4@mail.pl", Password = "new password 4"  },
             };
         }
 
@@ -53,11 +54,18 @@ namespace TEST02_WPFMVVM.services
             customers.Remove(customer);
         }
 
-        public void Update(CustomerModel customer, string name)
+        public void Update(CustomerModel customer, string name, string address, string email, string password)
         {
-            customers.Where(c => c.Id == customer.Id).ToList().ForEach(x => x.Name = name);
-            
-            
+            customers.Where(c => c.Id == customer.Id).ToList()
+                .ForEach(x =>
+                {
+                    x.Name = name;
+                    x.Address = address;
+                    x.Email = email;
+                    x.Password = password;
+                }            
+            );
+                        
         }
     }
 }
