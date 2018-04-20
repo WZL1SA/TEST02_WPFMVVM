@@ -1,8 +1,8 @@
-﻿CREATE TABLE [dbo].[Customers]
-(
-	[CustomerId] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-    [CustomerName] VARCHAR(50) NULL, 
-    [CustomerAddress] VARCHAR(50) NULL, 
-    [CustomerEMail] VARCHAR(50) NULL, 
-    [CustomerPassword] VARCHAR(50) NULL
-)
+CREATE TABLE [dbo].[Customers] (
+    [Id]       INT          IDENTITY (1, 1) NOT NULL,
+    [Name]     VARCHAR (50) NULL,
+    [Address]  VARCHAR (50) NULL,
+    [Email]    VARCHAR (50) NULL,
+    [Password] VARCHAR (50) NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
